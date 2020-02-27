@@ -1,0 +1,23 @@
+{
+  "name": "achievements-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev ./src/index.ts",
+    "prod": "cd ./prod && ts-node ./src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "stormdb": "^0.2.0",
+    "telegraf": "^3.36.0"
+  }
+}
