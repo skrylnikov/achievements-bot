@@ -126,7 +126,8 @@ bot.on('message', async (ctx)=> {
         return user.set(achievementConfig.id, value + 1).save();
       }
     }));
-
+  console.log(`${chatId}: ${ctx.from.username || ctx.from.first_name || ctx.from.last_name} ${ctx.updateSubTypes.join(',')}`);
+    
   changedList.forEach((id)=> {
     const achievementConfig = achievementList.find((x)=> x.id === id);
     if(!achievementConfig){
@@ -136,6 +137,7 @@ bot.on('message', async (ctx)=> {
     const level = achievementConfig.levelList.indexOf(value) + 1;
     if(level !== 0 ){
       sendAchievement(ctx, achievementConfig.id, level);
+      console.log(`send ${achievementConfig.id} ${value} ${level}`);
     }
   });
     
