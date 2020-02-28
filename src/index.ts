@@ -32,6 +32,10 @@ type StickerAchievement = BaseAchievement & {
   type: 'sticker',
 };
 
+type AnimationAchievement = BaseAchievement & {
+  type: 'animation',
+}
+
 type TextAchievement = BaseAchievement & {
   type: 'text',
 } & ({
@@ -42,7 +46,7 @@ type TextAchievement = BaseAchievement & {
   text: string[];
 } | {});
 
-type AllAchievement = StickerAchievement | TextAchievement;
+type AllAchievement = StickerAchievement | TextAchievement | AnimationAchievement;
 
 const achievementList: AllAchievement[] = [
   {
@@ -72,6 +76,11 @@ const achievementList: AllAchievement[] = [
     type: 'text',
     levelList: [2, 15, 50, 500],
     word: ['лол', 'охлол', 'lol', 'лал']
+  },
+  {
+    id: "Повар",
+    type: 'animation',
+    levelList: [1, 20, 100, 1000],
   }
 ];
 
@@ -82,6 +91,9 @@ bot.on('message', async (ctx)=> {
   const chatId = ctx.chat.id
   const id = ctx.from.id;
   const message = ctx.message;
+
+  console.log(message);
+  
 
   const user = db.get(chatId)
     .get(id);
@@ -95,6 +107,12 @@ bot.on('message', async (ctx)=> {
       switch (achievementConfig.type) {
         case 'sticker':{
           if(message.sticker){
+            changed = true;
+          }
+          break;
+        }
+        case 'animation': {
+          if(message.animation){
             changed = true;
           }
           break;
