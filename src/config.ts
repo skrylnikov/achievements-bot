@@ -41,7 +41,7 @@ export const achievementList: AllAchievement[] = [
     word: ['лол', 'охлол', 'lol', 'лал']
   },
   {
-    id: "Повар",
+    id: "Люитель движущихся картинок",
     type: 'animation',
     levelList: [1, 20, 100, 1000],
   },
@@ -77,20 +77,39 @@ export const achievementList: AllAchievement[] = [
       message.reply_to_message ? (message.date - message.reply_to_message.date >= 60*60*24) : false,
   },
   {
-    id: 'Инкремент',
+    id: 'Калькулятор',
     type: 'text',
     levelList: [3, 15, 50, 500],
-    text: ['+', '++', '+++', '++++', '+++++'],
-  },
-  {
-    id: 'Декремент',
-    type: 'text',
-    levelList: [3, 15, 50, 500],
-    text: ['-', '--', '---', '----', '-----'],
+    text: [
+      '+', '++', '+++', '++++', '+++++', 
+      '-', '--', '---', '----', '-----',
+      '=', '==', '===', '====', '=====',
+      '*', '**', '***', '****', '*****',
+      '/', '//', '///', '////', '/////', 
+    ],
   },
   {
     id: 'Птица говорун',
     type: 'voice',
     levelList: [5, 20, 100, 1000],
-  }
+  },
+  {
+    id: 'Двачер',
+    type: 'any',
+    levelList: [1, 3, 10, 100],
+    customCheck: ({forwardFrom}) => 
+      forwardFrom  === 'ru4chan' || forwardFrom === 'dvachannel',
+  },
+  {
+    id: 'Фронтендер',
+    type: 'text',
+    levelList: [1, 3, 10, 100],
+    text: ['js', 'ts', 'css', 'html'],
+  },
+  {
+    id: 'Криптоанархист',
+    type: 'text',
+    levelList: [1, 3, 10, 100],
+    text: ['биткоин', 'блокчейн', 'блокчеин', 'bitcoin', 'blockhain'],
+  },
 ];

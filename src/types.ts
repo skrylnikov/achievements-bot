@@ -4,6 +4,7 @@ type CustomCheckProps = {
   wordList: string[];
   text: string;
   message: IncomingMessage;
+  forwardFrom?: string;
 }
 
 type CustomCheck = (props: CustomCheckProps) => boolean;
@@ -39,9 +40,16 @@ type TextAchievement = BaseAchievement & {
   text: string[];
 } | {});
 
+type AnyAchievement = BaseAchievement & {
+  type: 'any',
+} & ({
+  customCheck: CustomCheck;
+});
+
 export type AllAchievement = StickerAchievement 
   | TextAchievement 
   | AnimationAchievement 
   | PhotoAchievement
   | VoiceAchievement
+  | AnyAchievement
   ;

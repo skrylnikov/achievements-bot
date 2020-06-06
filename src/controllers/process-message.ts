@@ -54,13 +54,14 @@ export const processMessageController = async (ctx: ContextMessageUpdate)=> {
         }
         case 'text': {
           if(!message.text){
-            return;
+            break;
           } 
           const text = message.text.toLowerCase();
-
+          const forwardFrom = message.forward_from_chat?.username;
+          
           const wordList = text.split(/\s|\.|,|!|\?|[0-9]/).filter((x)=> x.length!==0);
           if('customCheck' in achievementConfig){
-            changed = achievementConfig.customCheck({text, wordList, message})
+            changed = achievementConfig.customCheck({text, wordList, message, forwardFrom})
           } else
           if('word' in achievementConfig){
             changed = achievementConfig.word.some((x) => wordList.includes(x));
@@ -74,8 +75,16 @@ export const processMessageController = async (ctx: ContextMessageUpdate)=> {
           break;
         }
       
-        default:
+        default:{
+          const text = '';
+          const forwardFrom = message.forward_from_chat?.username;
+          const wordList = text.split(/\s|\.|,|!|\?|[0-9]/).filter((x)=> x.length!==0);
+          
+          if('customCheck' in achievementConfig){
+            changed = achievementConfig.customCheck({text, wordList, message, forwardFrom})
+          }
           break;
+        }
       }
       if(changed) {
         changedList.push(achievementConfig.id);
