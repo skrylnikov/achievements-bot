@@ -41,7 +41,7 @@ export const achievementList: AllAchievement[] = [
     word: ['лол', 'охлол', 'lol', 'лал']
   },
   {
-    id: "Люитель движущихся картинок",
+    id: "Любитель движущихся картинок",
     type: 'animation',
     levelList: [1, 20, 100, 1000],
   },
@@ -104,12 +104,12 @@ export const achievementList: AllAchievement[] = [
     id: 'Фронтендер',
     type: 'text',
     levelList: [1, 3, 10, 100],
-    text: ['js', 'ts', 'css', 'html'],
+    word: ['js', 'ts', 'css', 'html'],
   },
   {
     id: 'Криптоанархист',
     type: 'text',
     levelList: [1, 3, 10, 100],
-    text: ['биткоин', 'блокчейн', 'блокчеин', 'bitcoin', 'blockhain'],
+    word: ['биткоин', 'блокчейн', 'блокчеин', 'bitcoin', 'blockhain'],
   },
 ];
