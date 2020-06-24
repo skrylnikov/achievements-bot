@@ -10,6 +10,14 @@ const sendAchievement = (ctx: ContextMessageUpdate, achievement: string, level: 
   });
 };
 
+const mediaGroupIdList: string[] = [];
+
+setInterval(()=> {
+  while (mediaGroupIdList.length>100) {
+    mediaGroupIdList.shift();
+  }
+}, 60000);
+
 export const processMessageController = async (ctx: ContextMessageUpdate)=> {
   if(!ctx.from || !ctx.from.id || !ctx.chat || !ctx.chat.id || !ctx.message || ctx.message.forward_from) {
     return;
@@ -17,6 +25,14 @@ export const processMessageController = async (ctx: ContextMessageUpdate)=> {
   const chatId = ctx.chat.id
   const id = ctx.from.id;
   const message = ctx.message;
+  console.log(message.media_group_id);
+  if(message.media_group_id){
+    if(mediaGroupIdList.includes(message.media_group_id)){
+      return;
+    }
+    mediaGroupIdList.push(message.media_group_id);
+  }
+  
 
   const user = db.get(chatId)
     .get(id);
@@ -59,7 +75,8 @@ export const processMessageController = async (ctx: ContextMessageUpdate)=> {
           const text = message.text.toLowerCase();
           const forwardFrom = message.forward_from_chat?.username;
           
-          const wordList = text.split(/\s|\.|,|!|\?|[0-9]/).filter((x)=> x.length!==0);
+          const wordList = text.replace(/^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/, '').split(/\s|\.|,|!|\?|[0-9]/).filter((x)=> x.length!==0);
+          
           if('customCheck' in achievementConfig){
             changed = achievementConfig.customCheck({text, wordList, message, forwardFrom})
           } else
@@ -71,7 +88,7 @@ export const processMessageController = async (ctx: ContextMessageUpdate)=> {
           } else {
             changed = text.length !== 0;
           }
-
+ 
           break;
         }
       

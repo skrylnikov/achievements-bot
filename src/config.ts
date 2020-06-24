@@ -104,12 +104,24 @@ export const achievementList: AllAchievement[] = [
     id: 'Фронтендер',
     type: 'text',
     levelList: [1, 3, 10, 100],
-    word: ['js', 'ts', 'css', 'html'],
+    word: ['js', 'ts', 'css', 'html', 'react', 'redux', 'жс', 'реакт'],
   },
   {
     id: 'Криптоанархист',
     type: 'text',
     levelList: [1, 3, 10, 100],
-    word: ['биткоин', 'блокчейн', 'блокчеин', 'bitcoin', 'blockhain'],
+    word: ['биткоин', 'блокчейн', 'блокчеин', 'bitcoin', 'blockhain', 'ton', 'тон', 'эфир', 'etherium', 'биток', 'крипта', 'криптовалюта', 'криптоблядство', 'криптовалюты', ],
+  },
+  {
+    id: 'Латентный гей',
+    type: 'text',
+    levelList: [1, 3, 10, 100],
+    word: ['пидор', 'пидорас'],
+  },
+  {
+    id: 'Латентный гей-фронтендер',
+    type: 'text',
+    levelList: [1, 3, 10, 100],
+    text: ['фронендеры пидоры', 'фронендер пидор'],
   },
 ];
